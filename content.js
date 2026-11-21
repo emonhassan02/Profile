@@ -15,7 +15,7 @@ const PROFILE = {
   pageTitle: "Md Emon Hassan | Condensed Matter Physics Researcher",
   navName: "Emon Hassan",              // upore navbar e
   navSub: "Physics researcher",
-  role: "Research Assistant, Materials Research Lab",
+  role: "MS Research Student, Materials Research Lab",
   location: "Pabna University of Science and Technology, Bangladesh",
   email: "emon.200702@s.pust.ac.bd",
   photo: "assets/profile.png",         // apnar photo ei naam e assets folder e rakhun
