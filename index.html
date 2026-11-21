@@ -1,250 +1,133 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Md. Emon Hassan | Academic Research Portfolio</title>
-
-  <meta name="description" content="Md. Emon Hassan is an M.S. Physics researcher at Pabna University of Science and Technology, working on computational materials science, density functional theory, hydrogen storage and energy materials.">
-
+  <meta name="description" content="Md. Emon Hassan — M.S. Physics researcher working in condensed matter physics, computational materials science, DFT, hydrogen storage and sustainable energy materials.">
   <meta name="author" content="Md. Emon Hassan">
-  <meta name="theme-color" content="#10182d">
-
+  <meta name="theme-color" content="#10182b">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Md. Emon Hassan | Academic Research Portfolio">
-  <meta property="og:description" content="Research in condensed matter physics, first-principles calculations, hydrogen storage and sustainable energy materials.">
+  <meta property="og:title" content="Md. Emon Hassan | Research Portfolio">
+  <meta property="og:description" content="Research in computational materials science, first-principles calculations, hydrogen storage and energy materials.">
   <meta property="og:url" content="https://emonhassan02.github.io/Profile/">
   <meta property="og:image" content="https://emonhassan02.github.io/Profile/assets/profile.png">
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%2310182d'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='58' fill='%237dd3c7' font-family='Georgia'%3EEH%3C/text%3E%3C/svg%3E">
-
+  <title>Md. Emon Hassan | Research Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2310182b'/%3E%3Ctext x='50' y='66' text-anchor='middle' font-size='54' font-family='Arial' font-weight='700' fill='%237de0d0'%3EEH%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-
   <script src="content.js" defer></script>
   <script src="script.js" defer></script>
 </head>
-
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <div class="reading-progress" id="readingProgress"></div>
-
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="#home">
-        <span class="brand-mark">EH</span>
-        <span class="brand-copy">
-          <strong id="navName">Emon Hassan</strong>
-          <small id="navSub">Physics Researcher</small>
-        </span>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="wordmark" href="#home" aria-label="Go to homepage">
+        <span class="wordmark-icon">EH</span>
+        <span class="wordmark-text"><strong id="navName">Emon Hassan</strong><small id="navSub">Physics · Materials Research</small></span>
       </a>
-
-      <button class="icon-button menu-toggle" id="menuToggle"
-              type="button" aria-label="Open navigation"
-              aria-expanded="false" aria-controls="mainMenu">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="menu" id="mainMenu" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#experience">Experience</a>
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#talks">Conferences</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#research">Research</a><a href="#education">Education</a><a href="#publications">Publications</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
       </nav>
-
-      <button class="icon-button theme-toggle" id="themeToggle"
-              type="button" aria-label="Switch colour theme">
-        <span id="themeIcon">☾</span>
-      </button>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour theme"><span id="themeIcon">☾</span></button>
     </div>
   </header>
 
-  <div class="page-layout" id="home">
-
-    <aside class="profile-panel" aria-label="Researcher profile">
-      <div class="profile-cover">
-        <div class="cover-orbit orbit-one"></div>
-        <div class="cover-orbit orbit-two"></div>
-        <span class="cover-symbol">∑</span>
+  <main id="main">
+    <section class="hero wrap" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="status-dot"></span><span id="heroEyebrow">M.S. Physics · Research Assistant</span></div>
+        <p class="hero-pretitle">Hello, I’m</p>
+        <h1 id="heroName">Md. Emon <span>Hassan.</span></h1>
+        <p class="hero-summary" id="heroSummary"></p>
+        <div class="hero-specialties" id="heroSpecialties"></div>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#publications">Explore my research <span>↗</span></a>
+          <a class="button button-ghost" href="#contact">Get in touch</a>
+          <a class="button button-ghost" id="cvButton" href="#" hidden>Download CV ↓</a>
+        </div>
+        <div class="hero-meta"><span>⌖ <b id="heroLocation">Bangladesh</b></span><span class="meta-divider"></span><span>✉ <a id="heroEmail" href="mailto:emon.200702@s.pust.ac.bd">emon.200702@s.pust.ac.bd</a></span></div>
       </div>
-
-      <div class="profile-content">
-        <div class="photo-wrap">
-          <img class="profile-photo" id="profilePhoto"
-               src="assets/profile.png"
-               alt="Portrait of Md. Emon Hassan">
-          <span class="photo-status" aria-label="Research profile"></span>
+      <div class="hero-visual">
+        <div class="visual-grid"></div>
+        <div class="visual-orbit orbit-a"></div><div class="visual-orbit orbit-b"></div>
+        <div class="portrait-frame">
+          <div class="portrait-topline"><span>RESEARCH PROFILE</span><span>01 / 01</span></div>
+          <img id="profilePhoto" src="assets/profile.png" alt="Portrait of Md. Emon Hassan">
+          <div class="portrait-caption"><div><strong id="portraitName">Md. Emon Hassan</strong><small id="portraitRole">Computational Materials Science</small></div><span class="portrait-arrow">↗</span></div>
         </div>
-
-        <div class="profile-badges" id="profileBadges"></div>
-
-        <h1 id="profileName">Md. Emon Hassan</h1>
-        <p class="profile-role" id="profileRole"></p>
-        <p class="profile-location" id="profileLocation"></p>
-
-        <div class="profile-links" id="profileLinks"></div>
-
-        <div class="profile-stats">
-          <div class="stat">
-            <strong id="statPublications">4</strong>
-            <span>Publications</span>
-          </div>
-          <div class="stat">
-            <strong id="statConferences">5</strong>
-            <span>Presentations</span>
-          </div>
-          <div class="stat">
-            <strong id="statThird">3.61</strong>
-            <span id="statThirdLabel">B.Sc. CGPA</span>
-          </div>
-        </div>
-
-        <a class="cv-button" id="cvButton" href="#" hidden>
-          <span>↓</span> Download CV
-        </a>
-
-        <p class="profile-note">Open to academic collaboration and research opportunities.</p>
+        <div class="floating-note note-top"><span class="note-icon">✳</span><span><b>First-principles</b><small>DFT & materials modelling</small></span></div>
+        <div class="floating-note note-bottom"><span class="note-icon note-teal">◇</span><span><b>Sustainable energy</b><small>Hydrogen · Thermoelectrics</small></span></div>
       </div>
-    </aside>
+      <div class="hero-bottomline"><span>SCROLL TO EXPLORE</span><span class="scroll-line"></span><span>ACADEMIC PORTFOLIO · 2026</span></div>
+    </section>
 
-    <main class="main-content" id="main">
+    <section class="stats-strip wrap" aria-label="Profile highlights">
+      <div class="stat-cell"><strong id="statPapers">04</strong><span>Published papers</span></div>
+      <div class="stat-cell"><strong id="statTalks">05</strong><span>Conference contributions</span></div>
+      <div class="stat-cell"><strong id="statTools">10+</strong><span>Research tools</span></div>
+      <div class="stat-cell stat-note"><span>RESEARCH DIRECTION</span><strong>From atomic-scale physics to energy materials.</strong></div>
+    </section>
 
-      <section class="intro-section reveal" id="about">
-        <div class="section-kicker"><span></span> ABOUT ME</div>
-        <h2 class="intro-heading">Exploring materials.<br><em>Understanding the physics.</em></h2>
-        <div class="intro-text" id="aboutText"></div>
+    <section class="section wrap" id="about">
+      <div class="section-heading"><div><p class="section-label">01 — INTRODUCTION</p><h2>About <em>me</em></h2></div><p class="section-aside">A curiosity for materials, computation and the physics behind emerging energy technologies.</p></div>
+      <div class="about-layout"><div class="about-mark">“</div><div class="about-copy" id="aboutText"></div><div class="about-facts" id="aboutFacts"></div></div>
+    </section>
 
-        <div class="quick-interests" id="quickInterests"></div>
-      </section>
-
-      <section class="content-section reveal" id="education">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">ACADEMIC JOURNEY</div>
-            <h2>Education</h2>
-          </div>
-          <span class="section-index">01</span>
-        </div>
-        <div class="timeline" id="educationList"></div>
-      </section>
-
-      <section class="content-section reveal" id="experience">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">RESEARCH BACKGROUND</div>
-            <h2>Experience & Projects</h2>
-          </div>
-          <span class="section-index">02</span>
-        </div>
-        <div class="experience-list" id="experienceList"></div>
-      </section>
-
-      <section class="content-section reveal" id="research">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">SCIENTIFIC INTERESTS</div>
-            <h2>Research Interests</h2>
-            <p class="section-description">
-              Computational approaches to understanding and designing
-              functional materials for energy applications.
-            </p>
-          </div>
-          <span class="section-index">03</span>
-        </div>
+    <section class="section section-tinted" id="research">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="section-label">02 — SCIENTIFIC FOCUS</p><h2>Research <em>interests</em></h2></div><p class="section-aside">Computational approaches to understand, predict and design functional materials.</p></div>
         <div class="research-grid" id="researchGrid"></div>
-      </section>
+        <div class="research-callout"><span class="callout-symbol">∴</span><div><small>CURRENT RESEARCH THEME</small><strong id="currentTheme">Nb-based perovskite hydrides for hydrogen storage</strong></div><a href="#publications" aria-label="Explore publications">↗</a></div>
+      </div>
+    </section>
 
-      <section class="content-section reveal" id="publications">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">SCHOLARLY CONTRIBUTIONS</div>
-            <h2>Publications</h2>
-            <p class="section-description">
-              Peer-reviewed research and ongoing manuscripts.
-            </p>
-          </div>
-          <span class="section-index">04</span>
-        </div>
+    <section class="section wrap" id="education">
+      <div class="section-heading"><div><p class="section-label">03 — ACADEMIC BACKGROUND</p><h2>Education & <em>training</em></h2></div><p class="section-aside">Building a strong foundation in physics and computational materials research.</p></div>
+      <div class="education-list" id="educationList"></div>
+    </section>
 
-        <div class="publication-tools">
-          <label class="search-box">
-            <span aria-hidden="true">⌕</span>
-            <input id="publicationSearch" type="search"
-                   placeholder="Search title, author or journal"
-                   aria-label="Search publications">
-          </label>
-
-          <div class="filter-buttons" id="publicationFilters">
-            <button class="filter-button active" type="button" data-filter="all">All</button>
-            <button class="filter-button" type="button" data-filter="published">Published</button>
-            <button class="filter-button" type="button" data-filter="under-review">Under review</button>
-          </div>
-        </div>
-
-        <p class="result-count" id="publicationCount" aria-live="polite"></p>
+    <section class="section section-tinted" id="publications">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="section-label">04 — SCHOLARLY OUTPUT</p><h2>Selected <em>publications</em></h2></div><p class="section-aside">Peer-reviewed contributions and ongoing manuscripts in functional materials.</p></div>
+        <div class="publication-toolbar"><label class="search-field"><span>⌕</span><input id="publicationSearch" type="search" placeholder="Search title, journal, author…" aria-label="Search publications"></label><div class="filter-tabs" id="publicationFilters"><button class="active" type="button" data-filter="all">All</button><button type="button" data-filter="published">Published</button><button type="button" data-filter="under-review">Under review</button></div></div>
+        <p class="publication-count" id="publicationCount" aria-live="polite"></p>
         <div class="publication-list" id="publicationList"></div>
-        <button class="show-more-button" id="showMoreButton" type="button" hidden>
-          Show all publications
-        </button>
-      </section>
+        <button class="show-more" id="showMore" type="button" hidden>Show all publications ↓</button>
+        <div class="scholar-cta"><span>For the complete publication and citation record</span><a id="scholarLink" href="https://scholar.google.com/citations?user=D8O3IMoAAAAJ" target="_blank" rel="noopener noreferrer">View Google Scholar ↗</a></div>
+      </div>
+    </section>
 
-      <section class="content-section reveal" id="talks">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">SCIENTIFIC COMMUNICATION</div>
-            <h2>Conferences & Presentations</h2>
-          </div>
-          <span class="section-index">05</span>
-        </div>
-        <div class="timeline" id="conferenceList"></div>
-      </section>
+    <section class="section wrap" id="experience">
+      <div class="section-heading"><div><p class="section-label">05 — RESEARCH JOURNEY</p><h2>Experience & <em>projects</em></h2></div><p class="section-aside">Research activities connecting first-principles calculations with materials properties.</p></div>
+      <div class="experience-grid" id="experienceGrid"></div>
+    </section>
 
-      <section class="content-section reveal" id="skills">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">COMPUTATIONAL TOOLKIT</div>
-            <h2>Technical Skills</h2>
-          </div>
-          <span class="section-index">06</span>
-        </div>
-        <div class="skills-grid" id="skillsGrid"></div>
-      </section>
+    <section class="section section-tinted" id="conferences">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="section-label">06 — ACADEMIC ENGAGEMENT</p><h2>Conferences & <em>presentations</em></h2></div><p class="section-aside">Sharing research findings through oral and poster presentations.</p></div>
+        <div class="conference-list" id="conferenceList"></div>
+      </div>
+    </section>
 
-      <section class="contact-section reveal" id="contact">
-        <div class="section-kicker">LET'S CONNECT</div>
-        <h2>Open to research conversations.</h2>
-        <p id="contactText"></p>
-        <a class="contact-email" id="contactEmail" href="#">
-          emon.200702@s.pust.ac.bd
-        </a>
-        <div class="contact-actions" id="contactActions"></div>
-      </section>
+    <section class="section wrap" id="skills">
+      <div class="section-heading"><div><p class="section-label">07 — RESEARCH TOOLKIT</p><h2>Technical <em>skills</em></h2></div><p class="section-aside">Scientific software, computational methods and tools used in research.</p></div>
+      <div class="skills-layout"><div class="skills-intro"><span class="skills-glyph">⌘</span><h3>Tools for<br>scientific discovery.</h3><p>From electronic-structure calculations to transport and photovoltaic device modelling.</p></div><div class="skills-groups" id="skillsGroups"></div></div>
+    </section>
 
-      <footer class="site-footer">
-        <div>
-          © <span id="footerYear"></span>
-          <strong id="footerName">Md. Emon Hassan</strong>
-        </div>
-        <p id="footerText"></p>
-        <a href="#home" class="back-top">Back to top ↑</a>
-      </footer>
+    <section class="contact-section" id="contact">
+      <div class="wrap contact-inner"><div><p class="section-label">08 — CONTACT</p><h2>Let’s discuss<br><em>research.</em></h2><p id="contactText">Open to academic collaboration and research opportunities.</p></div><div class="contact-card"><span class="contact-card-label">GET IN TOUCH</span><a class="contact-email" id="contactEmail" href="mailto:emon.200702@s.pust.ac.bd">emon.200702@s.pust.ac.bd</a><div class="contact-links" id="contactLinks"></div></div></div>
+    </section>
+  </main>
 
-    </main>
-  </div>
-
-  <button class="back-to-top-fab" id="backToTop"
-          type="button" aria-label="Back to top">↑</button>
-
+  <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="#home">EH<span>.</span></a><p>© <span id="footerYear"></span> <span id="footerName">Md. Emon Hassan</span>. All rights reserved.</p><a href="#home">Back to top ↑</a></div></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <button class="back-top" id="backTop" type="button" aria-label="Back to top">↑</button>
 </body>
 </html>
