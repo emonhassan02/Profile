@@ -1,16 +1,17 @@
 /* script.js: content.js theke page banay + shob animation. Edit korar dorkar nai. */
 const $=id=>document.getElementById(id),Q=(s,r=document)=>[...r.querySelectorAll(s)];
-const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/\'/g,"&#39;");
 const f=s=>esc(s).replace(/(WIEN2[kK])|([A-Za-z])(\d+)(?![\da-z.])/g,(m,w,a,b)=>w||a+"<sub>"+b+"</sub>");
 const au=s=>f(s).split(PROFILE.author).join("<b>"+PROFILE.author+"</b>");
 const P=PROFILE,RM=matchMedia("(prefers-reduced-motion:reduce)").matches,CO=matchMedia("(pointer:coarse)").matches;
 let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
 
 /* ===== HERO ===== */
+const rt0=()=>{document.documentElement.style.setProperty("--orb",P.orbit||"#ff4d2e");$("photo").classList.toggle("cut",P.photoMode==="cutout")};
 document.title=P.pageTitle;
 $("kick").textContent=P.affil;$("uni").textContent=P.univ;
-$("photo").alt=P.name;$("photo").src=P.photo;
-$("photo").onerror=function(){this.replaceWith(Object.assign(document.createElement("div"),{className:"ph",textContent:"EH"}))};
+$("photo").alt=P.name;$("photo").src=P.photo;rt0();
+$("photo").onerror=function(){if(!this.dataset.t&&/png$/i.test(P.photo)){this.dataset.t=1;this.src=P.photo.replace(/png$/i,"jpg");return}this.replaceWith(Object.assign(document.createElement("div"),{className:"ph",textContent:"EH"}))};
 $("name").setAttribute("aria-label",P.name);
 $("name").innerHTML=P.name.split(" ").map((w,wi,a)=>`<span class="w" aria-hidden="true">${[...w].map((c,i)=>`<span class="ch" style="--i:${a.slice(0,wi).join("").length+i}">${c}</span>`).join("")}</span> `).join("");
 $("links").innerHTML=LINKS.filter(l=>l[2]).map(l=>`<a href="${l[2]}" target="_blank" rel="noopener">${esc(l[0])}</a>`).join("");
@@ -54,13 +55,23 @@ const pubH=p=>`<article class="sp pub" data-r><div class="y">${p.y}</div><div><h
 function rp(){const q=$("q").value.trim().toLowerCase();
   [["pubs",0],["subm",1]].forEach(([id,s])=>{const l=PUBS.filter(p=>!!p.s===!!s&&(!q||(p.t+p.j+p.y+p.a).toLowerCase().includes(q)));$(id).innerHTML=l.map(pubH).join("")||'<p class="empty">No publications match your search.</p>'});reveal()}
 $("q").oninput=rp;rp();reveal();
-document.addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(!b)return;const p=PUBS[b.dataset.c];
-  navigator.clipboard.writeText(`${p.a}. ${p.t}. ${p.j}.${p.doi?" DOI: "+p.doi+".":""}`).then(()=>{b.textContent="Copied ✓";setTimeout(()=>b.textContent="Copy citation",1600)})});
+document.addEventListener("click",async e=>{const b=e.target.closest("[data-c]");if(!b)return;const p=PUBS[Number(b.dataset.c)];if(!p)return;
+  const citation=`${p.a}. ${p.t}. ${p.j}.${p.doi?" DOI: "+p.doi+".":""}`;
+  try{
+    if(navigator.clipboard&&window.isSecureContext) await navigator.clipboard.writeText(citation);
+    else {const ta=document.createElement("textarea");ta.value=citation;ta.style.position="fixed";ta.style.opacity="0";document.body.append(ta);ta.select();document.execCommand("copy");ta.remove();}
+    b.textContent="Copied ✓";
+  }catch(err){b.textContent="Copy unavailable";}
+  setTimeout(()=>b.textContent="Copy citation",1800);
+});
 
 /* ===== THEME ===== */
 const root=document.documentElement;let sv=null;try{sv=localStorage.getItem("theme")}catch(e){}
-const setT=t=>{root.dataset.theme=t;$("theme").textContent=t==="dark"?"☀":"☾";try{localStorage.setItem("theme",t)}catch(e){}};
-setT(sv||"dark");$("theme").onclick=()=>setT(root.dataset.theme==="dark"?"light":"dark");
+const setT=t=>{root.dataset.theme=t;$("theme").textContent=t==="dark"?"☀":"☾";
+  const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=t==="dark"?"#070a17":"#f3f6fc";
+  try{localStorage.setItem("theme",t)}catch(e){}};
+const preferred=sv||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");
+setT(preferred);$("theme").onclick=()=>setT(root.dataset.theme==="dark"?"light":"dark");
 
 /* ===== SCROLL: progress bar + self-drawing timelines ===== */
 const ts=Q(".tl");let tick=0;
@@ -82,19 +93,36 @@ addEventListener("pointermove",e=>{mx=e.clientX;my=e.clientY;const t=e.target.cl
 document.addEventListener("pointerout",e=>{const t=e.target.closest?.(".tilt,.btn");if(t&&!t.contains(e.relatedTarget))t.style.transform=""});
 if(!CO&&!RM){const cu=$("cur");(function L(){cx+=(mx-cx)*.12;cy+=(my-cy)*.12;cu.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(L)})()}
 
-/* ===== 3D PEROVSKITE LATTICE (hero): rotates, follows the mouse ===== */
-(function(){const c=$("lat"),x=c.getContext("2d"),V=[],B=[],N=2,o=1.5,C=["#9fb4ff","#f2b866","#5fd8c8"];
-  for(let i=0;i<=N;i++)for(let j=0;j<=N;j++)for(let k=0;k<=N;k++)V.push([i-o+.5,j-o+.5,k-o+.5,0]);
-  for(let i=0;i<N;i++)for(let j=0;j<N;j++)for(let k=0;k<N;k++){const q=[i-o+.5,j-o+.5,k-o+.5];V.push([q[0]+.5,q[1]+.5,q[2]+.5,1]);
-    [[.5,.5,0],[.5,.5,1],[.5,0,.5],[.5,1,.5],[0,.5,.5],[1,.5,.5]].forEach(d=>V.push([q[0]+d[0],q[1]+d[1],q[2]+d[2],2]))}
-  for(let a=0;a<V.length;a++)for(let b=a+1;b<V.length;b++){const p=V[a],q=V[b];if(p[3]+q[3]===3&&Math.hypot(p[0]-q[0],p[1]-q[1],p[2]-q[2])<.51)B.push([a,b])}
-  let ry=.5,rx=.5,W,H;
-  const sz=()=>{const d=devicePixelRatio||1;W=c.clientWidth;H=c.clientHeight;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0)};addEventListener("resize",sz);sz();
-  const pr=p=>{const X=p[0]*Math.cos(ry)+p[2]*Math.sin(ry),Z=-p[0]*Math.sin(ry)+p[2]*Math.cos(ry),Y=p[1]*Math.cos(rx)-Z*Math.sin(rx),Z2=p[1]*Math.sin(rx)+Z*Math.cos(rx),s=Math.min(W,H)/4.6,k=1/(1+Z2*.12);return[W/2+X*s*k,H/2+Y*s*k,Z2,k,s]};
-  (function draw(){x.clearRect(0,0,W,H);const A=V.map(pr);x.strokeStyle="rgba(150,175,255,.4)";x.lineWidth=1;x.shadowBlur=0;
-    B.forEach(([a,b])=>{x.beginPath();x.moveTo(A[a][0],A[a][1]);x.lineTo(A[b][0],A[b][1]);x.stroke()});
-    A.map((p,i)=>i).sort((a,b)=>A[b][2]-A[a][2]).forEach(i=>{const p=A[i],t=V[i][3];x.fillStyle=x.shadowColor=C[t];x.shadowBlur=10;x.beginPath();x.arc(p[0],p[1],[.05,.1,.065][t]*p[4]*p[3],0,7);x.fill()});
-    rx+=((.45+(my/innerHeight-.5)*.5)-rx)*.04;if(!RM)ry+=.004+(mx/innerWidth-.5)*.012;requestAnimationFrame(draw)})();
+/* ===== ATOM ORBITS around the portrait: back half behind the photo, front half in front ===== */
+(function(){
+  const cs=[$("orb0")],cx=cs.map(c=>c.getContext("2d")),rt=document.documentElement;let W=0,H=0;
+  const O=[[.47,72,-24,1.15,0],[.43,77,33,-.85,2.1],[.39,67,98,.95,4],[.34,82,-68,-1.35,5.2]]; /* radius, inclination, rotation, speed, phase */
+  const sz=()=>{const d=devicePixelRatio||1;W=cs[0].clientWidth;H=cs[0].clientHeight;cs.forEach((c,i)=>{c.width=W*d;c.height=H*d;cx[i].setTransform(d,0,0,d,0,0)})};
+  new ResizeObserver(sz).observe(cs[0]);
+  const pt=(o,th,t)=>{const a=o[0]*W,inc=(o[1]+3*Math.sin(t*.4+o[4])+(my/innerHeight-.5)*8)*Math.PI/180,rz=(o[2]+5*Math.sin(t*.3+o[4])+(mx/innerWidth-.5)*10)*Math.PI/180,
+    X0=a*Math.cos(th),Y0=a*Math.sin(th)*Math.cos(inc),Z=a*Math.sin(th)*Math.sin(inc);
+    return[W/2+X0*Math.cos(rz)-Y0*Math.sin(rz),H*.52+X0*Math.sin(rz)+Y0*Math.cos(rz),Z]};
+  const vis=cs[0].parentNode,LB=["VASP","WIEN2k","SCAPS-1D","BoltzTraP"],PA=Array.from({length:64},()=>[Math.random(),Math.random(),.015+Math.random()*.05,.6+Math.random()*1.8,Math.random()*6.28,.3+Math.random()*1.1]);let px=0,py=0;
+  (function frame(now){requestAnimationFrame(frame);if(!W)return;const t=RM?3:now/1000,dark=rt.dataset.theme!=="light",col=P.orbit||"#ff4d2e";
+    cx.forEach(c=>{c.clearRect(0,0,W,H);c.globalCompositeOperation=dark?"lighter":"source-over";c.lineCap="round";c.lineJoin="round"});
+    px+=((mx/innerWidth-.5)*2-px)*.06;py+=((my/innerHeight-.5)*2-py)*.06;vis.style.setProperty("--px",px.toFixed(3));vis.style.setProperty("--py",py.toFixed(3));
+    {const c=cx[0];
+      for(let q=0;q<3;q++){const f=(t*.3+q/3)%1,r=f*W*.52;c.beginPath();c.ellipse(W/2,H*.52,r,r*.45,-.35,0,7);c.globalAlpha=Math.pow(1-f,2)*.4;c.strokeStyle=col;c.lineWidth=1.6;c.stroke()}
+      PA.forEach(a=>{const y=((a[1]-t*a[2])%1+1)%1,X=a[0]+Math.sin(t*.5+a[4])*.02+px*.03*a[5],e=Math.min(1,Math.min(X,1-X,y,1-y)*6);
+        c.globalAlpha=e*(.35+.65*Math.abs(Math.sin(t*1.3+a[4])));c.fillStyle=a[5]>.9?"#fff":col;c.beginPath();c.arc(X*W,y*H,a[3]*a[5],0,7);c.fill()})}
+    O.forEach((o,k)=>{
+      [[0,Math.PI,1],[Math.PI,2*Math.PI,0]].forEach(([a0,a1,fr])=>{const c=cx[0];c.beginPath();
+        for(let i=0;i<=64;i++){const p=pt(o,a0+(a1-a0)*i/64,t);i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1])}
+        c.shadowColor=col;c.shadowBlur=fr?18:10;c.strokeStyle=col;c.globalAlpha=fr?.55:.3;c.lineWidth=fr?3.6:2.4;c.stroke();
+        c.shadowBlur=0;c.strokeStyle="#fff";c.globalAlpha=fr?.85:.4;c.lineWidth=fr?1.1:.8;c.stroke()});
+      const th=o[4]+o[3]*t,sg=Math.sign(o[3]);
+      for(let j=29;j>=0;j--){const a=th-sg*j*.05,p=pt(o,a,t),q=pt(o,a-sg*.05,t),fr=p[2]>0?1:0,c=cx[0],f=1-j/30;
+        c.beginPath();c.moveTo(p[0],p[1]);c.lineTo(q[0],q[1]);c.globalAlpha=Math.pow(f,1.6)*(fr?1:.55);c.lineWidth=1+f*5;c.strokeStyle=j<4?"#ffe9d6":col;c.shadowColor=col;c.shadowBlur=14;c.stroke()}
+      const p=pt(o,th,t),c=cx[0],r=5.5*(1+p[2]/(o[0]*W)*.4),gr=c.createRadialGradient(p[0],p[1],0,p[0],p[1],r*4);
+      gr.addColorStop(0,"#fff");gr.addColorStop(.25,"#ffe3c4");gr.addColorStop(.5,col);gr.addColorStop(1,"transparent");
+      c.globalAlpha=1;c.shadowBlur=0;c.fillStyle=gr;c.beginPath();c.arc(p[0],p[1],r*4,0,7);c.fill();
+      c.globalAlpha=p[2]>0?.95:.5;c.fillStyle="#fff";c.font="600 12px Hanken Grotesk,sans-serif";c.textAlign="left";c.fillText(LB[k],p[0]+r*2.2,p[1]-r*1.4)});
+    cx.forEach(c=>{c.globalAlpha=1;c.shadowBlur=0})})(0);
 })();
 
 /* ===== PERIODIC TABLE ===== */
@@ -220,7 +248,7 @@ function cas(t){const Eg=V.g,e=.3+7.4*((t%12)/12),al=E=>E<Eg?0:(Math.sqrt(E-Eg)*
   ax("Photon energy (eV)","Absorption α (arb. units)");
   x.beginPath();x.moveTo(mx(0),my(0));for(let i=0;i<=200;i++){const E=8*i/200;x.lineTo(mx(E),my(al(E)))}x.lineTo(mx(8),my(0));x.fillStyle=C.a+"44";x.fill();path(al,0,8,200,mx,my,1,C.a);
   for(let i=0;i<48;i++){x.fillStyle=`hsl(${270*i/48},90%,58%)`;x.fillRect(mx(1.6+1.6*i/48),Tp+PH+4,mx(1.6+1.6/48)-mx(1.6)+1,8)}
-  tx("visible",mx(2.4),Tp+PH+24,C.m,11,"center");ln(mx(e),Tp,mx(e),Tp+PH,hue(e),1.5);dot(mx(e),my(al(e)),5,hue(e));
+  tx("visible",mx(2.4),Tp+PH-8,C.m,11,"center");ln(mx(e),Tp,mx(e),Tp+PH,hue(e),1.5);dot(mx(e),my(al(e)),5,hue(e));
   tx(`Band gap Eg = ${Eg.toFixed(1)} eV`,L,Tp+PH+54,C.a,13)}
 
 /* 5 SCAPS-1D: layered solar cell + J-V */
@@ -228,10 +256,10 @@ function scaps(t){const Eg=V.g,Rs=V.r,jsc=ip(Eg),voc=Eg-.4,vt=.0388,j0=jsc/(Math
   for(let i=0;i<=90;i++){const J=jsc*.9995*i/90,Vv=vt*Math.log((jsc-J)/j0+1)-J*Rs/1000;if(Vv<0)break;pts.push([Vv,J]);if(Vv*J>pm){pm=Vv*J;mp=[Vv,J]}}
   const x0=W*.05,y0=H*.22,cw=W*.43,ch=H*.42,F=[.08,.14,.46,.2,.12],NM=["TCO","ETL","Absorber","HTL","Back"],K=[C.m,C.t,C.a,C.p,C.m],xs=[];let u=0;
   F.forEach((f,i)=>{const X=x0+cw*u;x.fillStyle=K[i]+(i%4?"66":"33");x.fillRect(X,y0,cw*f,ch);x.strokeStyle=K[i];x.lineWidth=1;x.strokeRect(X,y0,cw*f,ch);tx(NM[i],X+cw*f/2,y0+ch+18,C.m,i%4?12:11,"center");xs.push(X);u+=f});
-  for(let i=0;i<12;i++){const p=(t*.45+i/12)%1,X=x0-W*.07+p*(cw*.6+W*.07),Y=y0+ch*(.08+.84*((i*.618)%1));ln(X-10,Y-3,X,Y,"#ffd43b",1.5);dot(X,Y,3.2,"#ffd43b")}
+  for(let i=0;i<12;i++){const p=(t*.45+i/12)%1,X=x0-W*.03+p*(cw*.6+W*.03),Y=y0+ch*(.08+.84*((i*.618)%1));ln(X-10,Y-3,X,Y,"#ffd43b",1.5);dot(X,Y,3.2,"#ffd43b")}
   for(let i=0;i<20;i++){const p=(t*.3+i/20)%1,xa=xs[2]+cw*.46*(.2+.6*Math.abs(R[i][0])),Y=y0+ch*(.12+.76*Math.abs(R[i+20][1]));
     dot(xa+(xs[1]+cw*.07-xa)*p,Y,3,"#74c0fc");dot(xa+(xs[3]+cw*.1-xa)*p,Y,3,"#ff6b81")}
-  tx("Light",x0-W*.04,y0-12,"#ffd43b",12);tx("electrons go to the ETL, holes to the HTL",x0,y0+ch+42,C.m,12);
+  tx("Light →",x0,y0-12,"#ffd43b",12);tx("electrons go to the ETL, holes to the HTL",x0,y0+ch+42,C.m,12);
   const mx=v=>L+PW*v/2.1,my=j=>Tp+PH*(1-j/56);ax("Voltage (V)","Current density (mA/cm²)");
   x.fillStyle=C.t+"33";x.fillRect(L,my(mp[1]),mx(mp[0])-L,Tp+PH-my(mp[1]));
   x.beginPath();pts.forEach((p,i)=>i?x.lineTo(mx(p[0]),my(p[1])):x.moveTo(mx(p[0]),my(p[1])));x.strokeStyle=C.p;x.lineWidth=2.4;x.stroke();
@@ -242,8 +270,8 @@ function scaps(t){const Eg=V.g,Rs=V.r,jsc=ip(Eg),voc=Eg-.4,vt=.0388,j0=jsc/(Math
 const GW=64,GH=36;let Tm=new Float32Array(GW*GH),Tn=new Float32Array(GW*GH);
 const heat0=()=>{for(let j=0;j<GH;j++)for(let i=0;i<GW;i++)Tm[j*GW+i]=1.1*Math.exp(-(((i-20)/5)**2+((j-18)/5)**2))+.8*Math.exp(-(((i-44)/4)**2+((j-12)/4)**2))};
 function comsol(t){const D=V.D,q=V.q,hx=W*.04,hy=H*.1,hw=W*.72,hh=hw*GH/GW;
-  if(pt.x>hx&&pt.x<hx+hw&&pt.y>hy&&pt.y<hy+hh){const ci=(pt.x-hx)/hw*GW,cj=(pt.y-hy)/hh*GH;for(let j=Math.max(1,(cj-4)|0);j<Math.min(GH-1,cj+5);j++)for(let i=Math.max(1,(ci-4)|0);i<Math.min(GW-1,ci+5);i++)Tm[j*GW+i]+=.09*Math.exp(-(((i-ci)/2)**2+((j-cj)/2)**2))}
-  for(let s=0;s<3;s++){Tm[18*GW+20]+=.05*q;Tm[12*GW+44]+=.05*q;for(let j=1;j<GH-1;j++)for(let i=1;i<GW-1;i++){const p=j*GW+i;Tn[p]=Tm[p]+D*(Tm[p-1]+Tm[p+1]+Tm[p-GW]+Tm[p+GW]-4*Tm[p])}const sw=Tm;Tm=Tn;Tn=sw}
+  if(pt.x>hx&&pt.x<hx+hw&&pt.y>hy&&pt.y<hy+hh){const ci=(pt.x-hx)/hw*GW,cj=(pt.y-hy)/hh*GH;for(let j=Math.max(1,(cj-4)|0);j<Math.min(GH-1,cj+5);j++)for(let i=Math.max(1,(ci-4)|0);i<Math.min(GW-1,ci+5);i++)Tm[j*GW+i]+=.25*Math.exp(-(((i-ci)/2)**2+((j-cj)/2)**2))}
+  for(let s=0;s<3;s++){for(const p of[18*GW+20,12*GW+44]){Tm[p]+=.12*q;Tm[p+1]+=.12*q;Tm[p+GW]+=.12*q;Tm[p+GW+1]+=.12*q}for(let j=1;j<GH-1;j++)for(let i=1;i<GW-1;i++){const p=j*GW+i;Tn[p]=Tm[p]+D*(Tm[p-1]+Tm[p+1]+Tm[p-GW]+Tm[p+GW]-4*Tm[p])}const sw=Tm;Tm=Tn;Tn=sw}
   let mT=0;const d=hi.data;for(let p=0;p<GW*GH;p++){const v=Tm[p];if(v>mT)mT=v;const c=cmap(v/1.2),o=p*4;d[o]=c[0];d[o+1]=c[1];d[o+2]=c[2];d[o+3]=255}
   hx2.putImageData(hi,0,0);x.imageSmoothingEnabled=true;x.drawImage(hc,hx,hy,hw,hh);
   x.beginPath();for(let i=0;i<=GW;i+=4){x.moveTo(hx+hw*i/GW,hy);x.lineTo(hx+hw*i/GW,hy+hh)}for(let j=0;j<=GH;j+=4){x.moveTo(hx,hy+hh*j/GH);x.lineTo(hx+hw,hy+hh*j/GH)}
@@ -257,7 +285,7 @@ function comsol(t){const D=V.D,q=V.q,hx=W*.04,hy=H*.1,hw=W*.72,hh=hw*GH/GW;
 function phon(t){const mu=V.m,q=V.q*Math.PI,S=1+1/mu,wf=qq=>{const d=Math.sqrt(Math.max(0,S*S-4*Math.sin(qq/2)**2/mu));return[Math.sqrt(Math.max(0,S-d)),Math.sqrt(S+d)]},[wa,wo]=wf(q),wm=Math.sqrt(2*S),
     sp=W*.03,r1=W*.011,r2=r1*Math.cbrt(mu),x0=W*.29-8*sp;
   const chain=(yc,w,name,c)=>{let A=2*Math.cos(q/2),B=2-w*w;const nm=Math.max(Math.abs(A),Math.abs(B))||1;A/=nm;B/=nm;tx(name,W*.29,yc-H*.1,c,13,"center");
-    const P=[];for(let n=0;n<8;n++){P.push([x0+2*n*sp+sp*.9*A*Math.cos(q*n-w*t*2.2),r1,C.p]);P.push([x0+(2*n+1)*sp+sp*.9*B*Math.cos(q*(n+.5)-w*t*2.2),r2,C.a])}
+    const P=[];for(let n=0;n<8;n++){P.push([x0+2*n*sp+sp*.38*A*Math.cos(q*n-w*t*2.2),r1,C.p]);P.push([x0+(2*n+1)*sp+sp*.38*B*Math.cos(q*(n+.5)-w*t*2.2),r2,C.a])}
     for(let i=0;i<15;i++)ln(P[i][0],yc,P[i+1][0],yc,C.l,2);P.forEach(p=>dot(p[0],yc,p[1],p[2]))};
   chain(H*.32,wa,"Acoustic mode: neighbours move together",C.t);chain(H*.64,wo,"Optical mode: neighbours move against each other",C.a);
   const mx=u=>L+PW*u/Math.PI,my=w=>Tp+PH*(1-w/(wm*1.08));ax("Wave vector, Γ to X","Frequency ω (arb. units)");tx("Γ",L,Tp+PH+16,C.m,12,"center");tx("X",L+PW,Tp+PH+16,C.m,12,"center");
@@ -269,7 +297,7 @@ function boltz(t){const Eg=V.g,kt=8.617e-5*V.T,m0=-.3,m1=Eg+.3,mu=m0+(m1-m0)*(.5
     sn=z=>z>=0?-86.17*(z+2):-172.34/(1-z*.6),spp=z=>z>=0?86.17*(z+2):172.34/(1-z*.6),cn=z=>z>=0?Math.exp(-z):1+Math.pow(-z,1.5),
     F=m=>{const a=(Eg-m)/kt,b=m/kt,nn=cn(a),pp=cn(b),S=(sn(a)*nn+spp(b)*pp)/(nn+pp);return[S,S*S*(nn+pp)]};
   let pm=0;for(let i=0;i<=140;i++)pm=Math.max(pm,F(m0+(m1-m0)*i/140)[1]);
-  const mx=m=>L+PW*(m-m0)/(m1-m0),mS=s=>Tp+PH*(.5-s/900),mP=p=>Tp+PH*(1-.9*p/pm),[S,P]=F(mu);
+  const mx=m=>L+PW*(m-m0)/(m1-m0),mS=s=>Tp+PH*(.5-cl(s,-600,600)/1200),mP=p=>Tp+PH*(1-.9*p/pm),[S,P]=F(mu);
   const bx=W*.05,by=H*.3,bw=W*.43,bh=H*.2,gr=x.createLinearGradient(bx,0,bx+bw,0);gr.addColorStop(0,"#ff6b81");gr.addColorStop(1,"#74c0fc");
   x.globalAlpha=.4;x.fillStyle=gr;x.fillRect(bx,by,bw,bh);x.globalAlpha=1;x.strokeStyle=C.l;x.lineWidth=1.2;x.strokeRect(bx,by,bw,bh);
   tx("Hot side",bx,by-10,"#ff6b81",13);tx("Cold side",bx+bw,by-10,"#74c0fc",13,"right");
@@ -292,7 +320,7 @@ const TL=[
   i:'<path d="M2 12c1.5-6 3-6 4.5 0s3 6 4.5 0 3-6 4.5 0"/><path d="M17 12h5m-2-2l2 2-2 2"/>'},
  {n:"SCAPS-1D",s:"Solar-cell device",f:scaps,c:[["g","Absorber gap"," eV",.9,2.2,1.4,.05],["r","Series resistance"," Ω·cm²",0,6,1,.1]],d:"One-dimensional solar-cell simulator. In my work I test different ETL and HTL layers on an absorber and look for the stack with the highest efficiency.",
   i:'<circle cx="6" cy="6" r="2.5"/><path d="M6 1.5V.5M1.5 6H.5"/><rect x="10" y="10" width="12" height="11" rx="1.5"/><path d="M14 10v11M18 10v11"/>'},
- {n:"COMSOL Multiphysics",s:"Finite elements",f:comsol,i0:heat0,c:[["D","Thermal diffusivity","",.05,.24,.16,.01],["q","Heat sources","",0,1,.4,.05]],d:"Finite-element multiphysics on a meshed geometry. Here heat spreads across a plate whose edges are held cold. COMSOL appears next to SCAPS-1D in the NaSiCl3 perovskite solar-cell paper.",
+ {n:"COMSOL Multiphysics",s:"Finite elements",f:comsol,i0:heat0,c:[["D","Thermal diffusivity","",.05,.24,.16,.01],["q","Heat sources","",0,1,.6,.05]],d:"Finite-element multiphysics on a meshed geometry. Here heat spreads across a plate whose edges are held cold. COMSOL appears next to SCAPS-1D in the NaSiCl3 perovskite solar-cell paper.",
   i:'<path d="M3 20L12 4l9 16z"/><path d="M7.5 12h9M12 4v16M7.5 12L12 20M16.5 12L12 20"/>'},
  {n:"Phonopy",s:"Lattice dynamics",f:phon,c:[["q","Wave vector q","π/a",.05,.98,.4,.01],["m","Mass ratio m2/m1","",1,4,2,.1]],d:"Lattice dynamics from DFT forces. Atoms in a crystal vibrate in acoustic and optical modes, and imaginary frequencies would signal a dynamical instability. A two-atom chain shows both branches.",
   i:'<circle cx="4" cy="12" r="2.2"/><circle cx="20" cy="12" r="2.2"/><path d="M6.2 12l2-4 3 8 3-8 2 4"/>'},
@@ -312,7 +340,19 @@ const sz=()=>{const d=devicePixelRatio||1;W=cv.clientWidth;H=cv.clientHeight;cv.
 new ResizeObserver(sz).observe(cv);new IntersectionObserver(es=>{vis=es[0].isIntersecting}).observe(cv);
 const col=()=>{const q=getComputedStyle(root),v=n=>q.getPropertyValue(n).trim();C={p:v("--pri"),t:v("--teal"),a:v("--amb"),i:v("--ink"),m:v("--mute"),l:v("--line")};th=root.dataset.theme};
 pick(1);
-(function loop(now){requestAnimationFrame(loop);if(!vis||!W)return;if(th!==root.dataset.theme||!C.p)col();
+(function loop(now){requestAnimationFrame(loop);if(!vis||!W||document.hidden||RM)return;if(th!==root.dataset.theme||!C.p)col();
   x.clearRect(0,0,W,H);L=W*.58;Tp=H*.1;PW=W*.37;PH=H*.66;const t=RM?5:(now-T0)/1000;TL[k].f(t);
   if(auto&&t>11)pick((k+1)%TL.length,0)})(0);
+})();
+
+/* ===== ACCESSIBILITY + BACK TO TOP ===== */
+(function(){
+  const b=$("backTop");
+  if(!b)return;
+  let pending=false;
+  const update=()=>{pending=false;b.classList.toggle("show",window.scrollY>520)};
+  addEventListener("scroll",()=>{if(!pending){pending=true;requestAnimationFrame(update)}},{passive:true});
+  update();
+  b.addEventListener("click",()=>window.scrollTo({top:0,behavior:RM?"auto":"smooth"}));
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("pal").hidden){$("pal").hidden=true}});
 })();

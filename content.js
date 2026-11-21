@@ -20,20 +20,20 @@ const PROFILE = {
   phone: "+880 1707521785",
   dob: "18/12/2001",
   cgpa: "3.76",
-  photo: "assets/profile.png",
+  photo: "assets/profile.png",          // background-chhara (transparent) PNG, assets folder e rakhun
+  orbit: "#ff4d2e",                    // orbit er rong (jemon "#3fd0b8" teal, "#7f9bff" neel)
+  photoMode: "cutout",                 // "cutout" = kono frame chhara | "circle" = gol frame er bhitore
   cv: "assets/Emon_Hassan_CV.pdf",
   objective: "I aspire to pursue a research career at a reputable institution, specializing in Condensed Matter Physics, collaborating with researchers, and contributing to research in advanced materials and sustainable energy technologies."
 };
 
 /* [label, text, link]  link "" hole button hide hoye jabe */
-
 const LINKS = [
+  ["LinkedIn", "LinkedIn", ""],
+  ["ResearchGate", "ResearchGate Profile", ""],
   ["ORCID", "0009-0009-6252-3038", "https://orcid.org/0009-0009-6252-3038"],
-  ["LinkedIn", "LinkedIn Profile", "https://www.linkedin.com/in/md-emon-hassan-076572438/"],
-  ["Google Scholar", "Google Scholar Profile", "https://scholar.google.com/citations?user=D8O3IMoAAAAJ&hl=en"],
-  ["ResearchGate", "ResearchGate Profile", "https://www.researchgate.net/profile/Md-Emon-Hassan?ev=hdr_xprf"]
+  ["Google Scholar", "Google Scholar Profile", ""]
 ];
-
 
 const EDU = [
   {
