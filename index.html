@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Md Emon Hassan | Condensed Matter Physics Researcher</title>
+<meta name="description" content="Md Emon Hassan: MS researcher in condensed matter physics at Pabna University of Science and Technology. First-principles studies of thermoelectric, perovskite and photovoltaic materials.">
+<meta property="og:title" content="Md Emon Hassan | Condensed Matter Physics">
+<meta property="og:description" content="First-principles studies of thermoelectric, perovskite and photovoltaic materials.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Md Emon Hassan","jobTitle":"Research Assistant","affiliation":{"@type":"CollegeOrUniversity","name":"Pabna University of Science and Technology"},"sameAs":["https://orcid.org/0009-0009-6252-3038"]}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="top"><div class="in">
+  <a class="brand" href="#about"><span id="navName"></span><small id="navSub"></small></a>
+  <nav class="menu" id="menu" aria-label="Sections">
+    <a href="#about">About</a><a href="#education">Education</a><a href="#experience">Experience</a>
+    <a href="#research">Research</a><a href="#publications">Publications</a><a href="#talks">Conferences</a>
+    <a href="#skills">Skills</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="ib" id="theme" aria-label="Switch colour theme">☾</button>
+</div></div>
+
+<div class="layout">
+<aside class="side">
+  <canvas id="lat" aria-hidden="true"></canvas>
+  <img class="ph" id="photo" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'EH'}))">
+  <div class="badges" id="badges"></div>
+  <h1 id="name"></h1>
+  <p class="role" id="role"></p>
+  <p class="loc" id="loc"></p>
+  <div class="chips" id="links"></div>
+  <div class="stats"><div><b id="n-pub"></b><span>Papers</span></div><div><b id="n-talk"></b><span>Conferences</span></div><div><b id="n-3"></b><span id="l-3"></span></div></div>
+  <a class="cv" id="cv" download>Download CV</a>
+</aside>
+
+<main>
+<section class="card" id="about"><h2>Hi, I am Emon</h2><div class="lead" id="aboutText"></div></section>
+<section class="card" id="education"><h2><em>Academic background</em>Education</h2><ul class="tl" id="edu"></ul></section>
+<section class="card" id="experience"><h2><em>Career</em>Research experience</h2><div id="jobs"></div></section>
+<section class="card" id="research"><h2><em>Focus areas</em>Research interests</h2><div class="grid" id="ints"></div></section>
+<section class="card" id="publications">
+  <h2><em>Scholarly output</em>Publications</h2>
+  <div class="tools"><input id="q" type="search" placeholder="Search by title, journal or year" aria-label="Search publications">
+    <div class="seg" id="seg"><button class="on" data-f="all">All</button><button data-f="pub">Published</button><button data-f="sub">Under review</button></div></div>
+  <div id="pubs"></div>
+  <button class="more" id="more" hidden>Show all</button>
+</section>
+<section class="card" id="talks"><h2><em>Presentations</em>Conferences</h2><ul class="tl" id="tk"></ul></section>
+<section class="card" id="skills"><h2><em>Toolbox</em>Skills</h2><div class="sk" id="sk"></div></section>
+<section class="card" id="contact"><h2><em>Get in touch</em>Contact</h2><p class="lead" id="cText" style="margin-bottom:10px"></p><a class="big" id="cMail"></a></section>
+</main>
+</div>
+<footer>© <span id="yr"></span> <span id="fName"></span>. <span id="fText"></span></footer>
+
+<script src="content.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
