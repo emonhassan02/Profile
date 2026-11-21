@@ -54,12 +54,16 @@ h1{font-size:clamp(46px,7.6vw,96px);margin:12px 0 12px;letter-spacing:-.025em}
 .chips a:hover{transform:translateY(-3px);border-color:var(--pri);color:var(--pri)}
 .vis{position:relative;aspect-ratio:1;max-width:500px;width:100%;margin:auto;display:grid;place-items:center;animation:zoom 1.4s cubic-bezier(.2,.8,.2,1) .3s backwards}
 #lat{position:absolute;inset:0;width:100%;height:100%}
-.ph{position:relative;width:36%;aspect-ratio:1;border-radius:50%;object-fit:cover;border:3px solid var(--teal);display:grid;place-items:center;font:600 50px Fraunces,serif;background:#14275e;color:#fff;box-shadow:0 0 70px color-mix(in srgb,var(--teal) 45%,transparent);animation:fl 6s ease-in-out infinite}
-@keyframes fl{50%{transform:translateY(-12px)}}
-.ring{position:absolute;inset:19%;border-radius:50%;border:1px dashed color-mix(in srgb,var(--pri) 65%,transparent);animation:spin 30s linear infinite}
-.ring.r2{inset:7%;border-color:color-mix(in srgb,var(--teal) 55%,transparent);animation-direction:reverse;animation-duration:46s}
-.ring::after{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;border-radius:50%;background:var(--amb);box-shadow:0 0 14px var(--amb)}
-@keyframes spin{to{transform:rotate(1turn)}}
+ .vis::before{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,20,35,.34),rgba(180,0,20,.12) 42%,transparent 72%);filter:blur(22px);animation:redPulse 3.5s ease-in-out infinite alternate;z-index:0;pointer-events:none}
+@keyframes redPulse{to{transform:scale(1.12);opacity:.65}}
+.ph{position:relative;z-index:3;width:78%;height:88%;aspect-ratio:4/5;border-radius:24px;object-fit:cover;object-position:center top;border:1px solid rgba(255,90,100,.55);display:grid;place-items:center;font:600 50px Fraunces,serif;background:#14275e;color:#fff;box-shadow:0 0 22px rgba(255,20,35,.32),0 0 65px rgba(255,0,25,.36),0 22px 70px rgba(0,0,0,.38);animation:portraitFloat 6s ease-in-out infinite}
+@keyframes portraitFloat{50%{transform:translateY(-7px)}}
+.ring{position:absolute;z-index:2;left:-3%;top:28%;width:106%;height:48%;inset:auto;border-radius:50%;border:2px solid rgba(255,30,45,.9);box-shadow:0 0 8px #ff172b,0 0 20px rgba(255,0,30,.7),inset 0 0 12px rgba(255,0,30,.25);transform:rotate(-18deg);animation:orbitA 8s linear infinite;pointer-events:none}
+.ring.r2{left:5%;top:16%;width:90%;height:70%;border:1px solid rgba(255,70,80,.8);box-shadow:0 0 8px #ff2438,0 0 18px rgba(255,0,30,.65);transform:rotate(28deg);animation:orbitB 11s linear infinite}
+.ring::after{content:"";position:absolute;top:5%;left:16%;width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff,0 0 18px #ff2538,0 0 36px #ff001e}
+.ring.r2::after{top:88%;left:74%;width:10px;height:10px}
+@keyframes orbitA{to{transform:rotate(342deg)}}
+@keyframes orbitB{to{transform:rotate(388deg)}}
 .stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .stats div{padding:18px 14px;border-radius:18px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(8px);text-align:center}
 .stats b{display:block;font:600 38px Fraunces,serif;color:var(--pri)}
