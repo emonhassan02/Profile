@@ -23,9 +23,9 @@ The portfolio website includes 14 customisable animated background effects. Each
 
 ### How to Change the Animation
 
-Open `index.html` and find:
+Open `index.html` and find 37 no line:
 
-```html 37 line
+```html  
 <div class="vis effect-1">
 ```
 
