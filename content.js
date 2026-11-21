@@ -9,33 +9,21 @@
    Public site e false rakha nirapod. */
 const SHOW_PRIVATE = false;
 
-
 const PROFILE = {
-  name: "Md. Emon Hassan",
-  author: "Md. Emon Hassan", // This name will be bold in publications
-  pageTitle: "Md. Emon Hassan | Condensed Matter Physics Researcher",
-
-  roles: [
-    "Condensed Matter Physics",
-    "Computational Materials Science",
-    "First-Principles Studies and DFT",
-    "Thermoelectric Materials",
-    "Photovoltaics and Solar Cell Modelling"
-  ],
-
+  name: "Md Emon Hassan",
+  author: "Md. Emon Hassan",           // publication e ei nam bold hobe
+  pageTitle: "Md Emon Hassan | Condensed Matter Physics Researcher",
+  roles: ["Condensed Matter Physics", "Computational Materials Science", "First-Principles Studies and DFT", "Thermoelectric Materials", "Photovoltaics; Solar Cell Modeling and Simulation"],
   affil: "Department of Physics",
   univ: "Pabna University of Science and Technology, Pabna-6600, Bangladesh",
-
   email: "emon.200702@s.pust.ac.bd",
   phone: "+880 1707521785",
   dob: "18/12/2001",
   cgpa: "3.76",
-  photo: "/Profile/assets/profile.png",
+  photo: "assets/profile.png",
   cv: "assets/Emon_Hassan_CV.pdf",
-
-  objective: "I aspire to pursue a research career at a reputable institution, specialising in Condensed Matter Physics, collaborating with researchers, and contributing to research on advanced materials and sustainable energy technologies."
+  objective: "I aspire to pursue a research career at a reputable institution, specializing in Condensed Matter Physics, collaborating with researchers, and contributing to research in advanced materials and sustainable energy technologies."
 };
-
 
 /* [label, text, link]  link "" hole button hide hoye jabe */
 const LINKS = [
@@ -61,7 +49,7 @@ const EDU = [
     m: ["Final grade: 3.61/4.00", "Credit System: Semester", "Credits: 160", "Passing Year: 2026"],
     tl: "Thesis Title",
     th: "Pressure-Induced Structural, Mechanical, Electronic, Optical, and Thermoelectric Properties of the Binary Intermetallic Compound Hf5Si3 for Advanced High-Temperature Applications",
-    /*v: ["Undergraduate Academic Documents", "https://drive.google.com/drive/1oRBnwqciNwdWACJRIq?usp=sharing"]
+    v: ["Undergraduate Academic Documents", "https://drive.google.com/drive/folders/1oRBnwqciNwdWACJRIq?usp=sharing"]
   }
 ];
 
@@ -181,3 +169,17 @@ const REFS = [
 ];
 
 const FOOTER_TEXT = "Department of Physics, Pabna University of Science and Technology.";
+
+/* Apnar research e kon compound e kon element: ["formula", "element symbols"]
+   Periodic table e ei element gulo glow kore, ar marquee te formula gulo ghure. */
+const COMPOUNDS = [
+  ["Hf5Si3", "Hf Si"],
+  ["XCaBi (X = K, Rb, Cs)", "K Rb Cs Ca Bi"],
+  ["CuBiSeCl2", "Cu Bi Se Cl"],
+  ["NaSiCl3", "Na Si Cl"],
+  ["BaFeO3 (Sb-doped)", "Ba Fe O Sb"],
+  ["M2LiGaI6 (M = Rb, Cs)", "Rb Cs Li Ga I"],
+  ["SrSnX3 (X = S, Se)", "Sr Sn S Se"],
+  ["Na2ZrTeO6", "Na Zr Te O"],
+  ["Cu2ZnGeSe4", "Cu Zn Ge Se"]
+];
