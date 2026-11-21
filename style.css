@@ -2293,7 +2293,16 @@ button:focus-visible,a:focus-visible,input:focus-visible {
   );
 }
 
-
+#obj {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+  line-height: 1.8;
+  text-align: left;
+}
 /* ============================================================
    END OF COMPLETE STYLE.CSS
    ============================================================ */
