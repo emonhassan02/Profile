@@ -9,21 +9,34 @@
    Public site e false rakha nirapod. */
 const SHOW_PRIVATE = false;
 
+
 const PROFILE = {
-  name: "Md Emon Hassan",
-  author: "Md. Emon Hassan",           // publication e ei nam bold hobe
-  pageTitle: "Md Emon Hassan | Condensed Matter Physics Researcher",
-  roles: ["Condensed Matter Physics", "Computational Materials Science", "First-Principles Studies and DFT", "Thermoelectric Materials", "Photovoltaics; Solar Cell Modeling and Simulation"],
+  name: "Md. Emon Hassan",
+  author: "Md. Emon Hassan", // This name will be bold in publications
+  pageTitle: "Md. Emon Hassan | Condensed Matter Physics Researcher",
+
+  roles: [
+    "Condensed Matter Physics",
+    "Computational Materials Science",
+    "First-Principles Studies and DFT",
+    "Thermoelectric Materials",
+    "Photovoltaics and Solar Cell Modelling"
+  ],
+
   affil: "Department of Physics",
   univ: "Pabna University of Science and Technology, Pabna-6600, Bangladesh",
+
   email: "emon.200702@s.pust.ac.bd",
   phone: "+880 1707521785",
   dob: "18/12/2001",
   cgpa: "3.76",
+
   photo: "assets/profile.png",
   cv: "assets/Emon_Hassan_CV.pdf",
-  objective: "I aspire to pursue a research career at a reputable institution, specializing in Condensed Matter Physics, collaborating with researchers, and contributing to research in advanced materials and sustainable energy technologies."
+
+  objective: "I aspire to pursue a research career at a reputable institution, specialising in Condensed Matter Physics, collaborating with researchers, and contributing to research on advanced materials and sustainable energy technologies."
 };
+
 
 /* [label, text, link]  link "" hole button hide hoye jabe */
 const LINKS = [
