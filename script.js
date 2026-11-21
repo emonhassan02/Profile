@@ -152,7 +152,7 @@
 
   // CV button appears only when a CV path is provided.
   const cvButton = $("cvButton");
-  const cvPath = safeURL(PROFILE.cv);
+ const cvPath = String(PROFILE.cv || "").trim();
 
   if (cvButton) {
     if (cvPath) {
