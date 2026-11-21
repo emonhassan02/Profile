@@ -62,7 +62,7 @@ const EDU = [
     m: ["Final grade: 3.61/4.00", "Credit System: Semester", "Credits: 160", "Passing Year: 2026"],
     tl: "Thesis Title",
     th: "Pressure-Induced Structural, Mechanical, Electronic, Optical, and Thermoelectric Properties of the Binary Intermetallic Compound Hf5Si3 for Advanced High-Temperature Applications",
-    v: ["Undergraduate Academic Documents", "https://drive.google.com/drive/folders/1oRBnwqciNwdWACJRIq?usp=sharing"]
+    /*v: ["Undergraduate Academic Documents", "https://drive.google.com/drive/1oRBnwqciNwdWACJRIq?usp=sharing"]
   }
 ];
 
