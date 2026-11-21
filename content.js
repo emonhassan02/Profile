@@ -26,12 +26,14 @@ const PROFILE = {
 };
 
 /* [label, text, link]  link "" hole button hide hoye jabe */
+
 const LINKS = [
-  ["LinkedIn", "LinkedIn", ""],
-  ["ResearchGate", "ResearchGate Profile", ""],
   ["ORCID", "0009-0009-6252-3038", "https://orcid.org/0009-0009-6252-3038"],
-  ["Google Scholar", "Google Scholar Profile", ""]
+  ["LinkedIn", "LinkedIn Profile", "https://www.linkedin.com/in/md-emon-hassan-076572438/"],
+  ["Google Scholar", "Google Scholar Profile", "https://scholar.google.com/citations?user=D8O3IMoAAAAJ&hl=en"],
+  ["ResearchGate", "ResearchGate Profile", "https://www.researchgate.net/profile/Md-Emon-Hassan?ev=hdr_xprf"]
 ];
+
 
 const EDU = [
   {
