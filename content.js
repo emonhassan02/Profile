@@ -18,7 +18,7 @@ const PROFILE = {
   role: "Research Assistant, Materials Research Lab",
   location: "Pabna University of Science and Technology, Bangladesh",
   email: "emon.200702@s.pust.ac.bd",
-  photo: "assets/profile.jpg",         // apnar photo ei naam e assets folder e rakhun
+  photo: "assets/profile.png",         // apnar photo ei naam e assets folder e rakhun
   cv: "assets/Emon_Hassan_CV.pdf",     // CV ei naam e assets folder e rakhun
   badges: ["MS student", "Open to PhD positions"],
   stat3Value: "3.76",                  // profile card er 3rd number
