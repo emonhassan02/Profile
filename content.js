@@ -30,8 +30,7 @@ const PROFILE = {
   phone: "+880 1707521785",
   dob: "18/12/2001",
   cgpa: "3.76",
-
-  photo: "assets/Formal South Asian Man Portrait.png",
+  photo: "/Profile/assets/profile.png",
   cv: "assets/Emon_Hassan_CV.pdf",
 
   objective: "I aspire to pursue a research career at a reputable institution, specialising in Condensed Matter Physics, collaborating with researchers, and contributing to research on advanced materials and sustainable energy technologies."
