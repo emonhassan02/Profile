@@ -20,7 +20,7 @@ const PROFILE = {
   phone: "+880 1707521785",
   dob: "18/12/2001",
   cgpa: "3.76",
-  photo: "assets/profile.png",          // background-chhara (transparent) PNG, assets folder e rakhun
+  photo: "assets/emon.png",          // background-chhara (transparent) PNG, assets folder e rakhun
   orbit: "#ff4d2e",                    // orbit er rong (jemon "#3fd0b8" teal, "#7f9bff" neel)
   photoMode: "cutout",                 // "cutout" = kono frame chhara | "circle" = gol frame er bhitore
   cv: "assets/Emon_Hassan_CV.pdf",
