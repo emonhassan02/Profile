@@ -13,7 +13,7 @@ const PROFILE = {
   name: "Md Emon Hassan",
   authorName: "Md. Emon Hassan",       // publication e ei nam bold hobe (CV er moto likhun)
   pageTitle: "Md Emon Hassan | Condensed Matter Physics Researcher",
-  navName: "Emon Hassan",              // upore navbar e
+  navName: "Md. Emon Hassan",              // upore navbar e
   navSub: "Physics researcher",
   role: "MS Research Student, Materials Research Lab",
   location: "Pabna University of Science and Technology, Bangladesh",
