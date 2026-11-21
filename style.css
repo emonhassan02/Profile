@@ -263,3 +263,24 @@ img{max-width:100%}
 .vis::after{content:"";position:absolute;left:8%;right:8%;bottom:-1%;height:13%;z-index:0;background:radial-gradient(closest-side,color-mix(in srgb,var(--orb) 60%,transparent),transparent);filter:blur(10px)}
 .scan{position:absolute;left:12%;right:12%;height:2px;z-index:3;pointer-events:none;background:linear-gradient(90deg,transparent,#fff,transparent);box-shadow:0 0 22px 4px var(--orb);animation:scan 1.7s cubic-bezier(.5,0,.2,1) .7s both}
 @keyframes scan{0%{top:98%;opacity:0}8%,92%{opacity:1}100%{top:6%;opacity:0}}
+
+/* Natural bottom fade for cutout portrait */
+.vis .ph.cut{
+  -webkit-mask-image:linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 78%,
+    rgba(0,0,0,.85) 87%,
+    rgba(0,0,0,.35) 96%,
+    transparent 100%
+  );
+  mask-image:linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 78%,
+    rgba(0,0,0,.85) 87%,
+    rgba(0,0,0,.35) 96%,
+    transparent 100%
+  );
+}
+
