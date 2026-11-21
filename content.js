@@ -1,50 +1,21 @@
 
 // ============================================================
 // MD. EMON HASSAN — PERSONAL ACADEMIC WEBSITE
-// EDIT THIS FILE TO UPDATE YOUR PERSONAL INFORMATION.
-// Keep quotation marks, commas and brackets intact.
+// Edit this file to update your information and research.
+// Keep quotation marks, commas and brackets in place.
 // ============================================================
-
-
-// ------------------------------------------------------------
-// 1. PERSONAL INFORMATION
-// ------------------------------------------------------------
 
 const PROFILE = {
   name: "Md. Emon Hassan",
-  authorName: "Md. Emon Hassan",
-
-  pageTitle: "Md. Emon Hassan | Academic Research Portfolio",
-  navName: "Emon Hassan",
-  navSub: "Physics Researcher",
-
-  role: "M.S. Student in Physics | Research Assistant",
+  shortName: "Emon Hassan",
+  role: "M.S. Student in Physics · Research Assistant",
   location: "Pabna University of Science and Technology, Bangladesh",
-
   email: "emon.200702@s.pust.ac.bd",
-
   photo: "assets/profile.png",
-
-  // Upload a public CV PDF to assets and then add its exact path here.
-  // Example: "assets/Emon_Hassan_CV.pdf"
   cv: "",
-
-  badges: [
-    "M.S. Student",
-    "Computational Materials Science",
-    "Open to PhD Opportunities"
-  ],
-
-  statPublications: "4",
-  statConferences: "5",
-  statThirdValue: "3.61",
-  statThirdLabel: "B.Sc. CGPA"
+  statTools: "10+",
+  currentTheme: "Nb-based perovskite hydrides for hydrogen storage"
 };
-
-
-// ------------------------------------------------------------
-// 2. PROFESSIONAL LINKS
-// ------------------------------------------------------------
 
 const LINKS = [
   ["Email", "mailto:emon.200702@s.pust.ac.bd"],
@@ -54,146 +25,90 @@ const LINKS = [
   ["LinkedIn", "https://www.linkedin.com/in/md-emon-hassan-076572438/"]
 ];
 
-
-// ------------------------------------------------------------
-// 3. ABOUT ME
-// ------------------------------------------------------------
-
 const ABOUT = [
-  "I am an M.S. student in Physics at Pabna University of Science and Technology (PUST), Bangladesh, and a Research Assistant at the Materials Research Lab. My academic interests lie in condensed matter physics and computational materials science, particularly the application of density functional theory (DFT) to understand and predict the properties of functional materials.",
-
+  "I am an M.S. student in Physics at Pabna University of Science and Technology (PUST), Bangladesh, and a Research Assistant at the Materials Research Lab. My research interests lie in condensed matter physics and computational materials science, particularly the application of density functional theory (DFT) to understand and predict the properties of functional materials.",
   "My current M.S. thesis focuses on the structural stability, hydrogen storage performance and physical properties of Nb-based perovskite hydrides XNbH3 (X = K, Rb, Cs). I am also interested in thermoelectric materials, lead-free perovskites, photovoltaics and magnetic materials.",
-
   "I aim to contribute to research on advanced functional materials and sustainable energy technologies through reliable first-principles calculations, computational modelling and scientific collaboration."
 ];
 
-
-// ------------------------------------------------------------
-// 4. QUICK RESEARCH KEYWORDS
-// ------------------------------------------------------------
-
-const QUICK_INTERESTS = [
-  "Density Functional Theory",
-  "Hydrogen Storage",
-  "Thermoelectric Materials",
-  "Computational Materials Science",
-  "Perovskites",
-  "Sustainable Energy"
+const ABOUT_FACTS = [
+  ["Research field", "Condensed Matter Physics"],
+  ["Core method", "First-principles DFT"],
+  ["Current focus", "Hydrogen Storage Materials"]
 ];
 
-
-// ------------------------------------------------------------
-// 5. EDUCATION
-// ------------------------------------------------------------
+const HERO_SPECIALTIES = [
+  "Density Functional Theory",
+  "Hydrogen Storage",
+  "Thermoelectric Materials"
+];
 
 const EDUCATION = [
   {
-    years: "Ongoing",
+    period: "Ongoing · Expected April 2027",
     degree: "M.S. in Physics",
     institution: "Pabna University of Science and Technology",
     location: "Pabna, Bangladesh",
-    description: "M.S. thesis: Comprehensive theoretical investigation of structural stability, hydrogen storage performance and physical properties of Nb-based perovskite hydrides XNbH3 (X = K, Rb, Cs).",
-    details: [
-      "CGPA: 3.76 / 4.00 (up to 1st semester)",
-      "Expected completion: April 2027"
+    description: "Thesis: Comprehensive theoretical investigation of structural stability, hydrogen storage performance and physical properties of Nb-based perovskite hydrides XNbH3 (X = K, Rb, Cs).",
+    highlights: [
+      "CGPA 3.76 / 4.00 (up to 1st semester)",
+      "M.S. research in progress"
     ],
     current: true
   },
   {
-    years: "2020 – 2026",
+    period: "2020 – 2026",
     degree: "B.Sc. (Honours) in Physics",
     institution: "Pabna University of Science and Technology",
     location: "Pabna, Bangladesh",
-    description: "Undergraduate thesis on the pressure-dependent structural, mechanical, electronic, optical and thermoelectric properties of Hf5Si3.",
-    details: [
-      "CGPA: 3.61 / 4.00",
-      "Completed 160 credits",
-      "Thesis grade: A+"
+    description: "Undergraduate thesis on the pressure-dependent structural, mechanical, electronic, optical and thermoelectric properties of the intermetallic compound Hf5Si3.",
+    highlights: [
+      "CGPA 3.61 / 4.00",
+      "160 credits",
+      "Thesis grade A+"
     ],
     current: false
   }
 ];
 
-
-// ------------------------------------------------------------
-// 6. RESEARCH EXPERIENCE AND PROJECTS
-// ------------------------------------------------------------
-
-const EXPERIENCE = [
-  {
-    title: "Materials Research Lab (MRL), PUST",
-    role: "Research Assistant",
-    period: "Current",
-    type: "Research Position",
-    description: "Working on computational materials research, first-principles simulations, physical-property analysis and scientific research activities."
-  },
-  {
-    title: "Nb-Based Perovskite Hydrides XNbH3",
-    role: "M.S. Thesis Research",
-    period: "Ongoing",
-    type: "Hydrogen Storage",
-    description: "Investigating structural stability, hydrogen storage capacity, electronic structure, optical response, lattice dynamics and thermodynamic properties of KNbH3, RbNbH3 and CsNbH3 using density functional theory."
-  },
-  {
-    title: "Computational Investigation of Functional Materials",
-    role: "First-Principles Research",
-    period: "Research Projects",
-    type: "DFT and Materials Design",
-    description: "Studying the structural, electronic, optical, magnetic and thermoelectric properties of intermetallic compounds, perovskites and energy-related materials."
-  },
-  {
-    title: "Lead-Free Perovskite Photovoltaics",
-    role: "Computational Device Modelling",
-    period: "Research Projects",
-    type: "Solar Energy",
-    description: "Investigating lead-free perovskite materials and photovoltaic device performance using SCAPS-1D and COMSOL."
-  }
-];
-
-
-// ------------------------------------------------------------
-// 7. RESEARCH INTERESTS
-// ------------------------------------------------------------
-
 const INTERESTS = [
   {
-    icon: "01",
+    number: "01",
     title: "Computational Materials Science",
-    description: "First-principles modelling and prediction of structural, electronic, optical, mechanical and thermodynamic properties of functional materials."
+    description: "Predicting and understanding the structural, electronic, optical, mechanical and thermodynamic properties of functional materials.",
+    tags: ["Materials modelling", "Structure–property relations"]
   },
   {
-    icon: "02",
+    number: "02",
     title: "Density Functional Theory",
-    description: "Electronic-structure calculations, structural optimization, energy calculations and physical-property analysis using DFT."
+    description: "First-principles calculations, structural optimization, electronic structure and physical-property analysis using DFT.",
+    tags: ["WIEN2k", "Quantum ESPRESSO", "VASP"]
   },
   {
-    icon: "03",
+    number: "03",
     title: "Hydrogen Storage Materials",
-    description: "Theoretical investigation of metal hydrides, hydrogen storage capacity, thermodynamic stability and hydrogen desorption."
+    description: "Metal hydrides, hydrogen storage capacity, formation energetics, thermodynamic stability and hydrogen desorption.",
+    tags: ["Perovskite hydrides", "Hydrogen energy"]
   },
   {
-    icon: "04",
+    number: "04",
     title: "Thermoelectric Materials",
-    description: "Understanding electronic transport, Seebeck coefficient, electrical conductivity, thermal conductivity and thermoelectric performance."
+    description: "Electronic transport, Seebeck coefficient, electrical conductivity, thermal conductivity and thermoelectric performance.",
+    tags: ["Boltzmann transport", "Phonons"]
   },
   {
-    icon: "05",
-    title: "Perovskites and Photovoltaics",
-    description: "Lead-free perovskite materials, electronic and optical properties, solar-cell device simulation and photovoltaic performance."
+    number: "05",
+    title: "Perovskites & Photovoltaics",
+    description: "Lead-free perovskites, optoelectronic properties, solar-cell device modelling and photovoltaic performance.",
+    tags: ["SCAPS-1D", "COMSOL"]
   },
   {
-    icon: "06",
-    title: "Magnetic and Functional Materials",
-    description: "Computational exploration of magnetic ordering, electronic structure and structure-property relationships in functional materials."
+    number: "06",
+    title: "Magnetic & Functional Materials",
+    description: "Computational exploration of magnetic ordering, electronic structure and doping-dependent materials properties.",
+    tags: ["Magnetism", "Electronic structure"]
   }
 ];
-
-
-// ------------------------------------------------------------
-// 8. PUBLICATIONS
-// Add new papers at the beginning of this list.
-// status: "published" or "under-review"
-// ------------------------------------------------------------
 
 const PUBLICATIONS = [
   {
@@ -238,57 +153,77 @@ const PUBLICATIONS = [
   }
 ];
 
-
-// ------------------------------------------------------------
-// 9. CONFERENCES AND PRESENTATIONS
-// ------------------------------------------------------------
+const EXPERIENCE = [
+  {
+    period: "Current",
+    category: "RESEARCH POSITION",
+    title: "Materials Research Lab (MRL), PUST",
+    role: "Research Assistant",
+    description: "Contributing to computational materials research, first-principles simulations, physical-property analysis and scientific research activities."
+  },
+  {
+    period: "M.S. thesis · Ongoing",
+    category: "HYDROGEN STORAGE",
+    title: "Nb-Based Perovskite Hydrides XNbH3",
+    role: "First-principles research",
+    description: "Investigating the structural stability, hydrogen storage capacity, electronic structure, optical response, lattice dynamics and thermodynamic properties of KNbH3, RbNbH3 and CsNbH3 using density functional theory."
+  },
+  {
+    period: "Research projects",
+    category: "FUNCTIONAL MATERIALS",
+    title: "Computational Investigation of Advanced Materials",
+    role: "DFT and materials modelling",
+    description: "Studying the structural, electronic, optical, magnetic and thermoelectric properties of intermetallic compounds, perovskites and energy-related materials."
+  },
+  {
+    period: "Research projects",
+    category: "SOLAR ENERGY",
+    title: "Lead-Free Perovskite Photovoltaics",
+    role: "Device-level simulation",
+    description: "Investigating lead-free perovskite materials and photovoltaic device performance using SCAPS-1D and COMSOL."
+  }
+];
 
 const TALKS = [
   {
     date: "27–28 June 2026",
-    event: "EFAST 2026, PUST and UniMAP",
-    type: "Poster Presentation",
+    kind: "POSTER PRESENTATION",
+    event: "EFAST 2026 · PUST and UniMAP",
     title: "Multifunctional properties of lead-free Na2ZrTeO6 double perovskite for high-temperature and optoelectronic applications"
   },
   {
     date: "11–12 December 2025",
-    event: "10th Bangladesh Crystallographic Association Conference, BUET",
-    type: "Oral Presentation",
+    kind: "ORAL PRESENTATION",
+    event: "10th Bangladesh Crystallographic Association Conference · BUET",
     title: "Pressure-tuned properties of the binary intermetallic compound Hf5Si3"
   },
   {
     date: "14–15 November 2025",
-    event: "2nd ICRAST, University of Rajshahi",
-    type: "Oral Presentation",
+    kind: "ORAL PRESENTATION",
+    event: "2nd ICRAST · University of Rajshahi",
     title: "Pressure-induced properties of Hf5Si3 for high-temperature applications"
   },
   {
     date: "20 April 2025",
-    event: "Conference on Computational Physics and Material Science, University of Rajshahi",
-    type: "Poster Presentation",
+    kind: "POSTER PRESENTATION",
+    event: "Conference on Computational Physics and Material Science · University of Rajshahi",
     title: "Structural, mechanical, optical and thermoelectric properties of Hf5Si3 under pressure"
   },
   {
     date: "6–7 February 2025",
-    event: "National Conference on Physics 2025, University of Rajshahi",
-    type: "Poster Presentation",
+    kind: "POSTER PRESENTATION",
+    event: "National Conference on Physics 2025 · University of Rajshahi",
     title: "Photovoltaic characteristics of Cu2ZnGeSe4"
   }
 ];
 
-
-// ------------------------------------------------------------
-// 10. TECHNICAL SKILLS
-// ------------------------------------------------------------
-
 const SKILLS = {
-  "First-Principles and DFT": [
+  "First-Principles & DFT": [
     "WIEN2k",
     "Quantum ESPRESSO",
     "VASP",
     "CASTEP"
   ],
-
   "Materials Modelling": [
     "Phonopy",
     "BoltzTraP2",
@@ -296,20 +231,17 @@ const SKILLS = {
     "XCrySDen",
     "Materials Studio"
   ],
-
-  "Solar-Cell and Device Simulation": [
+  "Device Simulation": [
     "SCAPS-1D",
     "COMSOL Multiphysics"
   ],
-
-  "Programming and Computing": [
+  "Programming & Computing": [
     "Fortran 90",
     "C++",
     "Bash",
     "Linux"
   ],
-
-  "Data Analysis and Scientific Writing": [
+  "Analysis & Scientific Writing": [
     "OriginLab",
     "MATLAB",
     "LaTeX",
@@ -318,13 +250,8 @@ const SKILLS = {
   ]
 };
 
-
-// ------------------------------------------------------------
-// 11. CONTACT AND FOOTER
-// ------------------------------------------------------------
-
 const CONTACT_TEXT =
-  "I welcome opportunities for academic collaboration, research discussions and postgraduate research. Please feel free to contact me by email.";
+  "I welcome academic collaboration, research discussions and postgraduate research opportunities in computational materials science, hydrogen storage and sustainable energy materials.";
 
 const FOOTER_TEXT =
   "M.S. Student in Physics · Pabna University of Science and Technology, Bangladesh.";
